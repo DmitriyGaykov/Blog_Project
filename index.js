@@ -12,9 +12,9 @@ const PORT = 4000;
 const validateMiddleware = require('./middleware/validateMiddleware')
 
 app.use(express.static('public'))
+app.use(fileUpload())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded())
-app.use(fileUpload())
 
 app.use('/posts/store', validateMiddleware)
 

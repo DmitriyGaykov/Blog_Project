@@ -6,15 +6,15 @@ module.exports = async (req, res) => {
         const image = req.files.image;
 
         try {
-            await image.mv(path.resolve(__dirname, 'public/assets/img/blogs', image.name))
+            await image.mv(path.resolve(__dirname, '../public/assets/img/blogs', image.name))
         } catch (e) {
             console.warn(e)
-        } finally {
-            await BlogPost.create({
-                ...req.body,
-                image: '/assets/img/blogs/' + image.name
-            })
+            return;
         }
+        await BlogPost.create({
+            ...req.body,
+            image: '/assets/img/blogs/' + image.name
+        })
     } catch (e) {
         console.warn(e)
     }
