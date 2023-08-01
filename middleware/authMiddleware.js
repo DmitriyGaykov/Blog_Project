@@ -11,5 +11,5 @@ module.exports = async (req, res, next) => {
         console.warn(e)
     }
 
-    res.redirect('/')
+    return res.redirect('/')
 }

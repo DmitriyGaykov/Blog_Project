@@ -1,3 +1,9 @@
 module.exports = (req, res) => {
-    res.render('register')
+    const regData = req.flash('reg-data')?.at(0)
+
+    res.render('register', {
+        errors: req.flash('validationErrors'),
+        username: regData?.username,
+        password: regData?.password
+    })
 }

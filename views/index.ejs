@@ -26,11 +26,11 @@
                     <div class="post-preview">
                         <a href="/post/<%= blogpost._id %>">
                             <h2 class="post-title"><%= blogpost.title %></h2>
-                            <h3 class="post-subtitle"><%= blogpost.body %></h3>
+                            <h3 class="post-subtitle"><%- blogpost.body %></h3>
                         </a>
                         <p class="post-meta">
                             Posted by
-                            <a href="#" class="nav-link"><%= blogpost?.userName || "Dimasik" %></a>
+                            <a href="#" class="nav-link"><%= blogpost?.userId?.username || "Dimasik" %></a>
                             on <%= blogpost?.datePosted.toDateString() || new Date().toDateString() %>
                         </p>
                     </div>

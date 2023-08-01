@@ -31,14 +31,28 @@
                     <!-- To make this form functional, sign up at-->
                     <!-- https://startbootstrap.com/solution/contact-forms-->
                     <!-- to get an API token!-->
-                    <form action="/posts/store" method="POST" enctype="multipart/form-data">
-                        <div class="form-floating">
+                    <% if(errors != null && errors.length > 0){ %>
+                        <ul class="list-group"></ul>
+                        <% for (let i = 0; i < errors.length; i++) { %>
+                            <li class="list-group-item list-group-item-danger mb-3 p-2"><%= errors[i] %></li>
+                        <% } %>
+                        </ul>
+                    <% } %>
+
+                    <form action="/posts/store" method="post" enctype="multipart/form-data">
+                        <div class="form-floating mb-2">
                             <input class="form-control" id="title" name="title" type="text" placeholder="Enter your title..."/>
                             <label for="title">Title</label>
                         </div>
-                        <div class="form-floating">
+                        <div class="form-floating mb-2">
                             <textarea class="form-control" id="body" name="body" placeholder="Enter message body here..." style="height: 12rem"></textarea>
-                            <label for="body">Body</label>
+                            <script>
+                                $('#body').summernote({
+                                    placeholder: "Enter message body here...",
+                                    tabsize: 2,
+                                    height: 200
+                                });
+                            </script>
                         </div>
                         <div class="control-group form-floating">
                             <div class="form-group floating-label-form-group controls">

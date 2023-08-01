@@ -16,16 +16,21 @@ module.exports = async (req, res) => {
                 }
                 if(same) {
                     req.session.userId = user._id
-                    res.redirect('/')
+                    return res.redirect('/')
                 } else {
-                    res.redirect('/auth/login')
+                    isWrong(req, res)
                 }
             })
         } else {
-            res.redirect('/auth/login')
+            isWrong(req, res)
         }
     } catch (e) {
-        console.warn(e)
-        res.redirect('/auth/login')
+        isWrong(req, res)
     }
+}
+
+const isWrong = (req, res) => {
+    req.flash('log-data', {...req.body})
+    req.flash('log-error', true)
+    res.redirect('/auth/login')
 }
